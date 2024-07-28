@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const { type } = require('os');
 
-const reviewModel = mongoose.Schema({
+
+const reviewModel = new mongoose.Schema({
     rating: {
         type: Number,
         required: true
@@ -15,7 +15,8 @@ const reviewModel = mongoose.Schema({
         required: true
     },
     reviewerName: {
-        type: Date, default: Date.now
+        type: String,
+        required: true
     },
     reviewerEmail: {
         type: String,
@@ -25,6 +26,6 @@ const reviewModel = mongoose.Schema({
         type: String,
         required: true
     },
-})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Review', reviewModel);

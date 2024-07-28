@@ -24,6 +24,11 @@ const createProduct = asyncHandler(async (req, res) => {
     title,
     description,
     category,
+    dimensions,
+    weight,
+    warrantyInformation,
+    shippingInformation,
+    brand,
     price,
     discountPercentage,
     rating,
@@ -40,6 +45,11 @@ const createProduct = asyncHandler(async (req, res) => {
   if (
     !title ||
     !description ||
+    !dimensions ||
+    !weight ||
+    !warrantyInformation ||
+    !shippingInformation ||
+    !brand ||
     !category ||
     !price ||
     !discountPercentage ||
@@ -65,6 +75,11 @@ const createProduct = asyncHandler(async (req, res) => {
     title,
     description,
     category,
+    dimensions,
+    weight,
+    warrantyInformation,
+    shippingInformation,
+    brand,
     price,
     discountPercentage,
     rating,
@@ -79,45 +94,55 @@ const createProduct = asyncHandler(async (req, res) => {
   });
   if (!productCreated) {
     res.status(400);
-    throw new Error("Bad request or something went wrong!");
+    throw new Error("Something went wrong while product creation!");
   }
   res.json({ message: "Product created successfully!", details: productCreated,}).status(201);
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
-    const {
-      title,
-      description,
-      category,
-      price,
-      discountPercentage,
-      rating,
-      stock,
-      tags,
-      sku,
-      availabilityStatus,
-      images,
-      thumbnail,
-      reviews,
-      returnPolicy,
-    } = req.body;
+  const {
+    title,
+    description,
+    category,
+    dimensions,
+    weight,
+    warrantyInformation,
+    shippingInformation,
+    brand,
+    price,
+    discountPercentage,
+    rating,
+    stock,
+    tags,
+    sku,
+    availabilityStatus,
+    images,
+    thumbnail,
+    reviews,
+    returnPolicy,
+  } = req.body;
   
-    if (
-      !title ||
-      !description ||
-      !category ||
-      !price ||
-      !discountPercentage ||
-      !rating ||
-      !stock ||
-      !tags ||
-      !sku ||
-      !availabilityStatus ||
-      !images ||
-      !thumbnail ||
-      !reviews ||
-      !returnPolicy
-    ) {
+  if (
+    !title ||
+    !description ||
+    !dimensions ||
+    !weight ||
+    !warrantyInformation ||
+    !shippingInformation ||
+    !brand ||
+    !category ||
+    !price ||
+    !discountPercentage ||
+    !rating ||
+    !stock ||
+    !tags ||
+    !sku ||
+    !availabilityStatus ||
+    !images ||
+    !thumbnail ||
+    !reviews ||
+    !returnPolicy
+  ) {
       res.status(400);
       throw new Error("One or more compulsory fields missing!");
     }
@@ -147,6 +172,5 @@ const deleteProduct = asyncHandler(async (req, res) => {
     const deletedProduct = await Product.deleteOne({ _id: req.params.id })
     res.json({ message: `Product '${product.title}' deleted successfully!`, details: deletedProduct }).status(200);
 });
-  
 
 module.exports = { getProduct, getProducts, createProduct, updateProduct, deleteProduct }
