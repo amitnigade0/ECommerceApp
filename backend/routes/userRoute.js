@@ -1,6 +1,7 @@
 const express = require('express');
 const userRouter = express.Router();
-const {registerUser, loginUser} = require('../controllers/userController')
+const { registerUser, loginUser, currentUser } = require('../controllers/userController')
+const validateToken = require('../middleware/validateTokenHandler')
 
 // userRouter.get('/register', async (req, res) => {
 //     const review = await Review.create(
@@ -18,5 +19,6 @@ const {registerUser, loginUser} = require('../controllers/userController')
 
 userRouter.post('/register', registerUser);
 userRouter.post('/login', loginUser)
+userRouter.get('/current', validateToken, currentUser);
 
 module.exports = userRouter;

@@ -6,10 +6,10 @@ import { LoginContext } from '../provider/userLoginProvider';
 
 
 const Products = () => {
-  const { isUserLoggedIn } = useContext(LoginContext)
+  const { loggedInUserData } = useContext(LoginContext)
   return (
     <>
-      <SearchAppBar isUserLoggedIn={isUserLoggedIn}/>
+      <SearchAppBar loggedInUserData={loggedInUserData}/>
       <Cards />
     </>
   );

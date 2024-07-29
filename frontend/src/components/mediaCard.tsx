@@ -22,7 +22,7 @@ export default function MediaCard(props: any) {
           <Typography variant="body2" color="text.secondary">
             {props.productItem.title}
           </Typography>
-          <Rating name="half-rating" defaultValue={props.productItem.rating} precision={0.5} />
+          <Rating name="half-rating" defaultValue={props.productItem.rating} precision={0.5} readOnly/>
           <Typography variant="body2" color="text.secondary">
             {props.productItem.reviews.length} Reviews
           </Typography>

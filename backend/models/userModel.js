@@ -13,6 +13,34 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    cartItems: {
+        type: Array,
+        required: false
+    },
+    orders: {
+        type: Array,
+        required: false
+    },
+    profilePhoto: {
+        type: String,
+        required: false
+    },
+    address: {
+        type: String,
+        required: false
+    },
+    shippingAddress: {
+        type: String,
+        required: false
+    },
+    language: {
+        type: String,
+        required: false
+    },
+    contactNumber: {
+        type: String,
+        required: false
+    }
 }, { timestamps: true })
 
 module.exports = mongoose.model('User', userSchema)

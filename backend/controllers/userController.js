@@ -53,4 +53,14 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = {registerUser, loginUser}
+const currentUser = asyncHandler(async (req, res) => {
+    let user = await User.findOne({ _id: req.user.id });
+    if (!user) {
+        res.status(404);
+        throw new Error('current user not found!')
+    }
+    user.password = '*******'
+    res.json(user).status(200);
+})
+
+module.exports = {registerUser, loginUser, currentUser}
