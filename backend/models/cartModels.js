@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const cartModel = new mongoose.Schema({
     productId: {
-        type: Number,
+        type: String,
         required: true
     },
     image: {

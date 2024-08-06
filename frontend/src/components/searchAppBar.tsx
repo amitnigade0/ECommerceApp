@@ -65,10 +65,21 @@ export default function SearchAppBar(props: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
-  
-  let profilePhoto = avatar1
+
+  let profilePhoto = avatar1;
   if (props.loggedInUserData?.profilePhoto) {
     profilePhoto = props.loggedInUserData?.profilePhoto;
+  }
+  const cartItemsBeforeLogin = [1, 2];
+  let cartItemsCount = 0;
+
+    if (props.loggedInUserData?.cartItems?.length > 0 && cartItemsBeforeLogin.length > 0) {
+      //better update user cart items in db or 
+      cartItemsCount = props.loggedInUserData?.cartItems?.length + cartItemsBeforeLogin.length;;
+  } else if (props.loggedInUserData?.cartItems?.length > 0) {
+      cartItemsCount = props.loggedInUserData?.cartItems?.length;
+  } else if (cartItemsBeforeLogin.length > 0) {
+      cartItemsCount = cartItemsBeforeLogin.length;
   }
 
   const isMenuOpen = Boolean(anchorEl);
@@ -224,24 +235,36 @@ export default function SearchAppBar(props: any) {
             <></>
           )}
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 cart items"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <ShoppingCartTwoToneIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <Link to={"/cart"} style={{ color: "white" }}>
+              <IconButton
+                size="large"
+                aria-label="show 4 cart items"
+                color="inherit"
+              >
+                <Badge badgeContent={cartItemsCount} color="error">
+                  <ShoppingCartTwoToneIcon />
+                </Badge>
+              </IconButton>
+            </Link>
+            <Link to={"/orders"} style={{ color: "white" }}>
+              {" "}
+              <IconButton
+                size="large"
+                aria-label="show order items"
+                color="inherit"
+              >
+                <Badge
+                  badgeContent={
+                    props.loggedInUserData?.username
+                      ? props.loggedInUserData?.orders?.length
+                      : 0
+                  }
+                  color="error"
+                >
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+            </Link>
             <IconButton
               size="large"
               edge="end"

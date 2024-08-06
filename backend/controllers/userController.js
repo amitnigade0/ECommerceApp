@@ -59,8 +59,30 @@ const currentUser = asyncHandler(async (req, res) => {
         res.status(404);
         throw new Error('current user not found!')
     }
-    user.password = '*******'
+    user.password = '*******';
     res.json(user).status(200);
 })
 
-module.exports = {registerUser, loginUser, currentUser}
+const updateUser = asyncHandler(async (req, res) => {
+    let user = await User.findOne({ _id: req.user.id });
+    if (!user) {
+        res.status(404);
+        throw new Error('current user not found!')
+    }
+    const validFields = Object.keys(User.schema.obj);
+    const updateFields = Object.keys(req.body);
+
+    const validData = updateFields.every(field => validFields.includes(field));
+    if (!validData) {
+        res.status(400);
+        throw new Error('Invalid data to update user!')
+    }
+    const updatedUserData = await User.updateOne(
+        { _id: req.user.id },
+        { $set: req.body }
+    )
+    res.json(updatedUserData).status(201)
+
+})
+
+module.exports = {registerUser, loginUser, currentUser, updateUser}

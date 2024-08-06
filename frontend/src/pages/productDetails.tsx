@@ -13,24 +13,69 @@ import {
 import warrenty from "../warrenty.png";
 import shipping from "../shipping.png";
 import returnPolicy from "../returnPolocy.png";
-
-import { useLocation } from "react-router-dom";
+import { LoggedInUserContext } from "../provider/loggedInUserDataProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 import SearchAppBar from "../components/searchAppBar";
-import { useContext } from "react";
-import { LoginContext } from "../provider/userLoginProvider";
+import { useContext, useState } from "react";
+import { AnonymousUserDataContext } from "../provider/anonymousUserDataProvider";
+import { updateLoggedInUser } from "../utility/utility";
 
 const ProductDetails = () => {
-  const { loggedInUserData } = useContext(LoginContext);
+  const { loggedInUserData, setLoggedInUserData } =
+    useContext(LoggedInUserContext);
+  const { anonymousUserData, setAnonymousUserData } = useContext(
+    AnonymousUserDataContext
+  );
+
   const location = useLocation();
   const { productData } = location.state || {};
   const offerPrice = Math.round(
     productData.price -
       (productData.discountPercentage * productData.price) / 100
   );
+  const [quantityCount, setQuantityCount] = useState(1);
+  const [enableViewCart, setEnableViewCart] = useState(false);
 
-  const handleSubmit = (event: any) => {
-    alert("added to cart!");
+  const token = localStorage.getItem("token");
+
+  const prodcutsAddedInCart = [
+    ...loggedInUserData.cartItems,
+    ...anonymousUserData.cartItems,
+  ];
+
+  const naviagate = useNavigate();
+
+  const handleAddToCartBtn = async (event: any) => {
+    let cartItem = {
+      productId: productData._id,
+      image: productData.thumbnail,
+      title: productData.title,
+      offeredPrice: offerPrice,
+      quantity: quantityCount,
+      date: new Date(),
+    };
+    if (loggedInUserData?.username) {
+      let cartItems = [cartItem, ...loggedInUserData.cartItems];
+      const updatedUserData = await updateLoggedInUser(token, cartItems);
+      setLoggedInUserData(updatedUserData);
+    } else {
+      setAnonymousUserData((prevData: any) => ({
+        ...prevData,
+        cartItems: [cartItem, ...prevData.cartItems],
+      }));
+    }
   };
+
+  const handleViewCartBtn = () => {
+    naviagate("/cart");
+  };
+
+  if (prodcutsAddedInCart.length > 0 && !enableViewCart) {
+    const isProductAddedInCart = prodcutsAddedInCart.find(
+      (el: any) => el.productId === productData._id
+    );
+    if (isProductAddedInCart) setEnableViewCart(true);
+  }
 
   return (
     <>
@@ -176,43 +221,69 @@ const ProductDetails = () => {
 
               <Divider sx={{ margin: 1 }} />
 
-              <form onSubmit={handleSubmit}>
-                <Box>
-                  <Box
-                    sx={{
-                      display: { xs: "flex", md: "flex", gap: 6 },
-                      flexGrow: 1,
-                    }}
-                  >
-                    <Typography variant="body2" sx={{ fontWeight: "bold" }}>
-                      QUANITITY:
-                    </Typography>
-                    <input
-                      type="number"
-                      id="quantity"
-                      name="quantity"
-                      min="1"
-                      max="5"
-                    />
-                  </Box>
-
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    sx={{ marginTop: 2 }}
-                    disableElevation
-                  >
-                    Add to Cart
-                  </Button>
+              <Box>
+                <Box
+                  sx={{
+                    display: { xs: "flex", md: "flex", gap: 6 },
+                    flexGrow: 1,
+                  }}
+                >
+                  <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+                    QUANITITY:
+                  </Typography>
+                  <input
+                    type="number"
+                    id="quantity"
+                    value={quantityCount}
+                    onChange={(e: any) => setQuantityCount(e.target.value)}
+                    name="quantity"
+                    min="1"
+                    max="5"
+                  />
                 </Box>
-              </form>
+                {enableViewCart ? (
+                  <Box>
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      sx={{ marginTop: 2 }}
+                      onClick={handleAddToCartBtn}
+                      disableElevation
+                      disabled
+                    >
+                      Added to Cart
+                    </Button>
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      sx={{ marginTop: 2 }}
+                      onClick={handleViewCartBtn}
+                      disableElevation
+                    >
+                      View Cart
+                    </Button>
+                  </Box>
+                ) : (
+                  <Box>
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      sx={{ marginTop: 2 }}
+                      onClick={handleAddToCartBtn}
+                      disableElevation
+                    >
+                      Add to Cart
+                    </Button>
+                  </Box>
+                )}
+              </Box>
             </Grid>
           </Grid>
 
           <Box sx={{ p: 8 }}>
             <Grid container>
-              {productData.reviews.map((review: any) => (
-                <Grid item xs={2}>
+              {productData.reviews.map((review: any, index: number) => (
+                <Grid item xs={2} key={index}>
                   <Box
                     sx={{
                       display: { xs: "flex", md: "flex", gap: 6 },

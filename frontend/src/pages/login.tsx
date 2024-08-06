@@ -9,16 +9,21 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import SearchAppBar from "../components/searchAppBar";
 import { useContext, useState } from "react";
-import { LoginContext } from "../provider/userLoginProvider";
+import { LoggedInUserContext } from "../provider/loggedInUserDataProvider";
 import axios from "axios";
+import { AnonymousUserDataContext } from "../provider/anonymousUserDataProvider";
+import { updateLoggedInUser } from "../utility/utility"
 
 const Login = () => {
-  const { setLoggedInUserData } = useContext(LoginContext);
+  const { setLoggedInUserData } = useContext(LoggedInUserContext);
+  const { anonymousUserData, setAnonymousUserData } = useContext(
+    AnonymousUserDataContext
+  );
   const naviagate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "amit1@gmail.com",
+    password: "12345",
   });
 
   const handleSubmit = async (event: any) => {
@@ -29,12 +34,31 @@ const Login = () => {
         formData
       );
       if (res.status === 200) {
+        localStorage.setItem('token', res.data.token);
         const currentUserData = await axios.get(
           "http://localhost:3001/api/user/current",
           { headers: { Authorization: `Bearer ${res.data.token}` } }
         );
         if (currentUserData.status === 200) {
-          setLoggedInUserData(currentUserData.data);
+          if (anonymousUserData?.cartItems?.length > 0) {
+            let cartItems = [];
+            if (currentUserData.data?.cartItems) {
+              cartItems = [
+                ...anonymousUserData?.cartItems,
+                ...currentUserData.data.cartItems,
+              ];
+            } else {
+              cartItems = [...anonymousUserData?.cartItems];
+            }
+            const updatedUserData = await updateLoggedInUser(res.data.token, cartItems);
+            setLoggedInUserData(updatedUserData);
+            setAnonymousUserData((prevData: any) => ({
+              ...prevData,
+              cartItems: [],
+            }));
+          } else {
+            setLoggedInUserData(currentUserData.data);
+          }
           naviagate("/products");
         }
       }
