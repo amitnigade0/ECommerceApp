@@ -235,7 +235,7 @@ const ProductDetails = () => {
                     type="number"
                     id="quantity"
                     value={quantityCount}
-                    onChange={(e: any) => setQuantityCount(e.target.value)}
+                    onChange={(e: any) => setQuantityCount(Number(e.target.value))}
                     name="quantity"
                     min="1"
                     max="5"
