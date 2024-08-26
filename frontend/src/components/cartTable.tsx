@@ -9,16 +9,15 @@ import Paper from "@mui/material/Paper";
 import { Box, Link } from "@mui/material";
 
 export default function CartTable(props: any) {
-  let totalAmt = 0;
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650}} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>PRODUCT</TableCell>
-            <TableCell align="right">PRICE</TableCell>
-            <TableCell align="right">QUANTITY</TableCell>
-            <TableCell align="right">TOTAL</TableCell>
+            <TableCell align="left">PRICE</TableCell>
+            <TableCell align="left">QUANTITY</TableCell>
+            <TableCell align="left">TOTAL</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -40,9 +39,9 @@ export default function CartTable(props: any) {
                     </Box>
                 </Box>
               </TableCell>
-              <TableCell align="right">{item.offeredPrice}</TableCell>
-              <TableCell align="right">{item.quantity}</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold' }}>${item.offeredPrice * item.quantity}</TableCell>
+              <TableCell align="left">{item.offeredPrice}</TableCell>
+              <TableCell align="left">{item.quantity}</TableCell>
+              <TableCell align="left" sx={{ fontWeight: 'bold' }}>${item.offeredPrice * item.quantity}</TableCell>
             </TableRow>
           ))}
         </TableBody>

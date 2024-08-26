@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const updateLoggedInUser = async (token: any, cartItems: any) => {
+export const updateLoggedInUser = async (token: any, dataToBeUpdated: any) => {
     try {
       const updatedUserResponse = await axios.post(
         "http://localhost:3001/api/user/update",
-        { cartItems },
+        dataToBeUpdated,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       if (updatedUserResponse.status === 200) {

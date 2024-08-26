@@ -26,6 +26,25 @@ const Login = () => {
     password: "12345",
   });
 
+  const calculateCartItemsOnLogin = (anonymousCartItems: Object[], curUserCartItems: any[]) => {
+    let newArr: any = []
+    anonymousCartItems.forEach((el:any, i:any) => {
+      let isMatch = false;
+      curUserCartItems.forEach((item:any, j:any) => {
+        if(el.productId === item.productId) {
+          curUserCartItems[j].quantity += el.quantity;
+          isMatch = true
+        }
+      })
+      if(!isMatch) {
+        newArr.push(el)
+      }
+    })
+    const finalCart = [...curUserCartItems, ...newArr]
+    console.log(finalCart);
+    return finalCart;
+  }
+
   const handleSubmit = async (event: any) => {
     try {
       event.preventDefault();
@@ -42,15 +61,18 @@ const Login = () => {
         if (currentUserData.status === 200) {
           if (anonymousUserData?.cartItems?.length > 0) {
             let cartItems = [];
-            if (currentUserData.data?.cartItems) {
+            if (currentUserData.data?.cartItems?.length > 0) {
+              // if user logged in successfully
+              // Combine logged in user & anonymous user cart items
+              // If duplicate products, update count & remove duplicates
+              const cartItemsOnLogin = await calculateCartItemsOnLogin(anonymousUserData?.cartItems, currentUserData.data.cartItems);
               cartItems = [
-                ...anonymousUserData?.cartItems,
-                ...currentUserData.data.cartItems,
+                ...cartItemsOnLogin,
               ];
             } else {
               cartItems = [...anonymousUserData?.cartItems];
             }
-            const updatedUserData = await updateLoggedInUser(res.data.token, cartItems);
+            const updatedUserData = await updateLoggedInUser(res.data.token, {cartItems});
             setLoggedInUserData(updatedUserData);
             setAnonymousUserData((prevData: any) => ({
               ...prevData,

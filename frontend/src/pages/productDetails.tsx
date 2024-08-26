@@ -52,11 +52,11 @@ const ProductDetails = () => {
       title: productData.title,
       offeredPrice: offerPrice,
       quantity: quantityCount,
-      date: new Date(),
+      date: new Date().toLocaleString(),
     };
     if (loggedInUserData?.username) {
       let cartItems = [cartItem, ...loggedInUserData.cartItems];
-      const updatedUserData = await updateLoggedInUser(token, cartItems);
+      const updatedUserData = await updateLoggedInUser(token, {cartItems});
       setLoggedInUserData(updatedUserData);
     } else {
       setAnonymousUserData((prevData: any) => ({

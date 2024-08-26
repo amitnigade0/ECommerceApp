@@ -85,4 +85,13 @@ const updateUser = asyncHandler(async (req, res) => {
 
 })
 
-module.exports = {registerUser, loginUser, currentUser, updateUser}
+const logoutUser = asyncHandler(async (req, res) => {
+    let token;
+    const bearerToken = req.headers.authorization || req.headers.Authorization || req?.body?.headers?.Authorization;
+    if (bearerToken && bearerToken.startsWith('Bearer')) {
+        token = bearerToken.split(' ')[1];
+    }
+    res.status(200).json({ message: 'Logged out successfully!' });
+})
+
+module.exports = {registerUser, loginUser, currentUser, updateUser, logoutUser}

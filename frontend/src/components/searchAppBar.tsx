@@ -20,6 +20,10 @@ import { Link } from "react-router-dom";
 import { yellow } from "@mui/material/colors";
 import avatar1 from "../travis.jpg";
 import { Avatar } from "@mui/material";
+import { LoggedInUserContext } from "../provider/loggedInUserDataProvider";
+import { AnonymousUserDataContext } from "../provider/anonymousUserDataProvider";
+import { useContext } from "react";
+import InventoryTwoToneIcon from '@mui/icons-material/InventoryTwoTone';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -61,25 +65,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar(props: any) {
+export default function SearchAppBar(proops: any) {
+  const { loggedInUserData } = useContext(LoggedInUserContext)
+  const { anonymousUserData } = useContext(AnonymousUserDataContext);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
   let profilePhoto = avatar1;
-  if (props.loggedInUserData?.profilePhoto) {
-    profilePhoto = props.loggedInUserData?.profilePhoto;
-  }
-  const cartItemsBeforeLogin = [1, 2];
+  // if (loggedInUserData?.profilePhoto) {
+  //   profilePhoto = loggedInUserData?.profilePhoto;
+  // }
   let cartItemsCount = 0;
-
-    if (props.loggedInUserData?.cartItems?.length > 0 && cartItemsBeforeLogin.length > 0) {
-      //better update user cart items in db or 
-      cartItemsCount = props.loggedInUserData?.cartItems?.length + cartItemsBeforeLogin.length;;
-  } else if (props.loggedInUserData?.cartItems?.length > 0) {
-      cartItemsCount = props.loggedInUserData?.cartItems?.length;
-  } else if (cartItemsBeforeLogin.length > 0) {
-      cartItemsCount = cartItemsBeforeLogin.length;
+  if (loggedInUserData?.cartItems?.length > 0) {
+    cartItemsCount = loggedInUserData?.cartItems?.length;
+  } else if (anonymousUserData?.cartItems?.length > 0) {
+    cartItemsCount = anonymousUserData?.cartItems?.length;
   }
 
   const isMenuOpen = Boolean(anchorEl);
@@ -119,7 +120,7 @@ export default function SearchAppBar(props: any) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {props.loggedInUserData?.username ? (
+      {loggedInUserData?.username ? (
         <Box>
           <Link to={"/account"} style={{ textDecoration: "none" }}>
             <MenuItem onClick={handleMenuClose}>Account</MenuItem>
@@ -227,7 +228,7 @@ export default function SearchAppBar(props: any) {
           </Search>
 
           <Box sx={{ flexGrow: 1 }} />
-          {props.loggedInUserData?.username ? (
+          {loggedInUserData?.username ? (
             <Typography color={yellow} sx={{ alignContent: "center" }}>
               Hello Amit
             </Typography>
@@ -255,13 +256,13 @@ export default function SearchAppBar(props: any) {
               >
                 <Badge
                   badgeContent={
-                    props.loggedInUserData?.username
-                      ? props.loggedInUserData?.orders?.length
+                    loggedInUserData?.username
+                      ? loggedInUserData?.orders?.length
                       : 0
                   }
                   color="error"
                 >
-                  <NotificationsIcon />
+                  <InventoryTwoToneIcon />
                 </Badge>
               </IconButton>
             </Link>
@@ -274,7 +275,7 @@ export default function SearchAppBar(props: any) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              {props.loggedInUserData?.username ? (
+              {loggedInUserData?.username ? (
                 <Avatar
                   sx={{ width: 24, height: 24 }}
                   alt="Travis Howard"

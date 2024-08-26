@@ -5,6 +5,7 @@ import SearchAppBar from "../components/searchAppBar";
 import CartTable from "../components/cartTable";
 import { Link } from "react-router-dom";
 import { AnonymousUserDataContext } from "../provider/anonymousUserDataProvider";
+import { updateLoggedInUser } from "../utility/utility";
 
 const Cart = () => {
   const { loggedInUserData, setLoggedInUserData } =
@@ -21,17 +22,18 @@ const Cart = () => {
     totalCartItems = [...anonymousUserData?.cartItems];
   }
 
+  const token = localStorage.getItem("token");
+
   // calculate total amount
   let totalAmt = 0;
   if (totalCartItems?.length > 0) {
     totalCartItems.forEach((item: any) => {
       totalAmt += item.offeredPrice * item.quantity;
     });
-    console.log("totalAmt :>> ", totalAmt);
   }
 
   const checkoutLogic = loggedInUserData?.username ? (
-    <Link to={"/orders"}>
+    <Link to={"/payment"} state={{ totalAmt }} style={{ textDecoration: 'none' }}>
       <Button type="submit" variant="contained">
         Checkout
       </Button>
@@ -44,15 +46,15 @@ const Cart = () => {
     </Link>
   );
 
-  const handleRemoveItemFromCart = (e: any) => {
+  const handleRemoveItemFromCart = async (e: any) => {
+    console.log(e.target.value);
     const productToBeRemoveFromCart = `${e.target.value}`;
     if (loggedInUserData?.username) {
-      setLoggedInUserData((prevData: any) => ({
-        ...prevData,
-        cartItems: prevData.cartItems.filter(
-          (item: any) => item._id !== productToBeRemoveFromCart
-        ),
-      }));
+      const cartItems = loggedInUserData.cartItems.filter(
+        (item: any) => item.productId !== productToBeRemoveFromCart
+      );
+      const updatedUserData = await updateLoggedInUser(token, {cartItems});
+      setLoggedInUserData(updatedUserData);
     } else {
       setAnonymousUserData((prevData: any) => ({
         ...prevData,
