@@ -10,62 +10,61 @@ Auth - JWT
 Payment Gateway - Razor pay
 Server Deployment - netlify,Heroku, AWS EC2
 notifications - firebase
-Backend - Node/NEXT JS
+Backend - Node Express/NEXT JS
 Froend End - React
-UI -  Tailwind css - Flowbite
-Test cases - Mocha, Chai
+UI -  Material UI
+Test cases - Mocha-Chai, jest
 
--------------------------------------------- 
-	
--Auth
-
--Data fetching/API Integration
-
--Data management - DB/Query
-
-Routing
-Login
-Logout
-Register
-Dashboard
-Payment
-
--Filtering, Sorting & pagination
-
---------------------------
-
-Amazon
-
-1.Login
-2.Register
-3.Forgot-Pwd
-
-4.Main-Dashboard 
- - Search
- - Tabs
- - Products
- - Lazy Loading
- - Todays deal popup
- - Carousel
-
-5.Product-detail(sorting, filtering, pagination)
-  - title description, multi images, tags, category, price, offer mgt
-
-6.comments & Review
-
-7.Buy-Now/Payment gateway razor pay
-
-8.Delivery address / add-update
-
-9.Your odders/returns
-
-10.Cart
-
-11.My-Profile
+--------------------------------------------------------------------------------
  
- 
+Structure
+https://www.youtube.com/watch?v=sBl0ZsJE9DY&list=PL63c_Ws9ecISwPzddQzQ671S_gzJA6M5z&index=1
+
+https://www.youtube.com/watch?v=zWEvbGdUhRg
+
+Follow
+https://www.youtube.com/watch?v=juPYfVY6jkQ&list=PLzb46hGUzitBp584kLyn6l3i6yC-rXlmN&index=4
+
+mongoDB commands
+https://www.mongodb.com/developer/products/mongodb/cheat-sheet/
+
+-----------------------------------------------
+
+Reference - https://dummyjson.com/docs/products
+
+Upcaming features ---------------------
+
+DONE
+- remove item 
+- Orders
+- Order detail
+- logout
+- account
+- forgot/reset password functionality
+- Gmail integration
+
+
+PENDING
+
+- token storing mechanism(encode & store)
+- blacklist token on logout
+- data caching
+- performance & optimization
+- test cases
+- server deployment
+
+- search function
+- add reviews
+- Create lazy loading for products page
+- Create pagination for reviews or my orders
+- razorPay integration
+
+
+---------------------
 Future scope
 - Admin dashboard for managing products, orders, and users.
 - Socket IO
 - Docker
 - CI/CD
+
+

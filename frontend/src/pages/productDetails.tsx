@@ -10,9 +10,9 @@ import {
   Typography,
 } from "@mui/material";
 
-import warrenty from "../warrenty.png";
-import shipping from "../shipping.png";
-import returnPolicy from "../returnPolocy.png";
+import warrenty from "../public/warrenty.png";
+import shipping from "../public/shipping.png";
+import returnPolicy from "../public/returnPolocy.png";
 import { LoggedInUserContext } from "../provider/loggedInUserDataProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import SearchAppBar from "../components/searchAppBar";

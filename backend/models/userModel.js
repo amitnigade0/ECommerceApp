@@ -13,6 +13,14 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    resetPasswordToken: {
+        type: String,
+        required: false
+    },
+    resetPasswordExpires: {
+        type: Date,
+        required: false
+    },
     cartItems: {
         type: Array,
         required: false

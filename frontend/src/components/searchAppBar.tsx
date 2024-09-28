@@ -18,7 +18,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
 import { Link } from "react-router-dom";
 import { yellow } from "@mui/material/colors";
-import avatar1 from "../travis.jpg";
+import avatar1 from "../public/travis.jpg";
 import { Avatar } from "@mui/material";
 import { LoggedInUserContext } from "../provider/loggedInUserDataProvider";
 import { AnonymousUserDataContext } from "../provider/anonymousUserDataProvider";

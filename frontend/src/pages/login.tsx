@@ -22,7 +22,7 @@ const Login = () => {
   const naviagate = useNavigate();
 
   const [formData, setFormData] = useState({
-    email: "amit1@gmail.com",
+    email: "amitnigade0@gmail.com",
     password: "12345",
   });
 
@@ -149,8 +149,10 @@ const Login = () => {
                 textAlign={"center"}
                 gutterBottom
               >
-                Don't have an account? <Link to={"/Register"}>Sign Up</Link>
+                Don't have an account? <Link to={"/Register"}>Sign Up  </Link>
+                Or <Link to={"/forgotPassword"}>Forgot password</Link>
               </Typography>
+              
             </Stack>
           </form>
         </Paper>

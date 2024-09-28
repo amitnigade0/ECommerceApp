@@ -2,6 +2,9 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+require('dotenv').config()
 
 const registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
@@ -94,4 +97,65 @@ const logoutUser = asyncHandler(async (req, res) => {
     res.status(200).json({ message: 'Logged out successfully!' });
 })
 
-module.exports = {registerUser, loginUser, currentUser, updateUser, logoutUser}
+const forgotPassword = asyncHandler(async (req, res) => {
+    const { email } = req.body;
+
+    // Check if user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Generate a reset code
+    const resetCode = crypto.randomBytes(3).toString('hex')
+    user.resetPasswordToken = resetCode;
+    user.resetPasswordExpires = Date.now() + 600000; // 10 min
+
+    await user.save();
+
+    // Send email
+    const transporter = nodemailer.createTransport({
+        secure: true,
+        host: 'smtp.gmail.com',
+        port: 465,
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.APP_PASSWORD_GOOGLE,
+        },
+    });
+    
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'E-Cart Account Password Reset Code',
+        text: `Your E-Cart account password reset code is ${resetCode}. It will expire in 1 hour.`,
+        html: `<span>Your E-Cart account password reset code is <b>${resetCode}</b>. It will expire in 10 minuntes.</span>`
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        console.log(error);
+        if (error) {
+            return res.status(500).json({ message: 'Error sending email' });
+        }
+        res.status(200).json({ message: 'Reset code sent to your email' });
+    });
+})
+
+const resetPassword = asyncHandler(async (req, res) => {
+    const { resetPasswordToken, newPassword } = req.body;
+
+    // Check if user exists
+    const user = await User.findOne({ resetPasswordToken, resetPasswordExpires: {$gt: Date.now()} });
+    if (!user) {
+        return res.status(404).json({ message: 'Invalid or expired token' });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    user.resetPasswordToken = '';
+    user.resetPasswordExpires = ''
+    await user.save();
+    res.status(201).json({ message: 'Password reset successfully' });
+})
+
+module.exports = {registerUser, loginUser, currentUser, updateUser, logoutUser, forgotPassword, resetPassword}
