@@ -1,18 +1,24 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 const LoggedInUserContext = createContext({
-    loggedInUserData: { username: "", cartItems: [], orders: [] },
-    setLoggedInUserData: (e: any) => {}
+  loggedInUserData: { username: "", cartItems: [], orders: [] },
+  setLoggedInUserData: (e: any) => {},
 });
 
-const LoggedInUserDataProvider = ({children }: any) => {
-    const [loggedInUserData, setLoggedInUserData] = useState({ username: "", cartItems: [], orders: [] })
-    
-    return (
-        <LoggedInUserContext.Provider value={{ loggedInUserData, setLoggedInUserData }}>
-        { children }
-    </LoggedInUserContext.Provider>
-    ) 
-}
+const LoggedInUserDataProvider = ({ children }: any) => {
+  const [loggedInUserData, setLoggedInUserData] = useState({
+    username: "",
+    cartItems: [],
+    orders: [],
+  });
 
-export { LoggedInUserDataProvider, LoggedInUserContext }
+  return (
+    <LoggedInUserContext.Provider
+      value={{ loggedInUserData, setLoggedInUserData }}
+    >
+      {children}
+    </LoggedInUserContext.Provider>
+  );
+};
+
+export { LoggedInUserDataProvider, LoggedInUserContext };

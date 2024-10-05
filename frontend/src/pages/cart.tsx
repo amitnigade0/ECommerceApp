@@ -15,6 +15,7 @@ const Cart = () => {
   );
   console.log("anonymousUserData ---  ", anonymousUserData);
   console.log("loggedInUserData ---  ", loggedInUserData);
+  
   let totalCartItems: any = [];
   if (loggedInUserData?.cartItems?.length > 0) {
     totalCartItems = [...loggedInUserData.cartItems];
@@ -33,7 +34,11 @@ const Cart = () => {
   }
 
   const checkoutLogic = loggedInUserData?.username ? (
-    <Link to={"/payment"} state={{ totalAmt }} style={{ textDecoration: 'none' }}>
+    <Link
+      to={"/payment"}
+      state={{ totalAmt }}
+      style={{ textDecoration: "none" }}
+    >
       <Button type="submit" variant="contained">
         Checkout
       </Button>
@@ -53,7 +58,7 @@ const Cart = () => {
       const cartItems = loggedInUserData.cartItems.filter(
         (item: any) => item.productId !== productToBeRemoveFromCart
       );
-      const updatedUserData = await updateLoggedInUser(token, {cartItems});
+      const updatedUserData = await updateLoggedInUser(token, { cartItems });
       setLoggedInUserData(updatedUserData);
     } else {
       setAnonymousUserData((prevData: any) => ({

@@ -56,7 +56,7 @@ const ProductDetails = () => {
     };
     if (loggedInUserData?.username) {
       let cartItems = [cartItem, ...loggedInUserData.cartItems];
-      const updatedUserData = await updateLoggedInUser(token, {cartItems});
+      const updatedUserData = await updateLoggedInUser(token, { cartItems });
       setLoggedInUserData(updatedUserData);
     } else {
       setAnonymousUserData((prevData: any) => ({
@@ -235,7 +235,9 @@ const ProductDetails = () => {
                     type="number"
                     id="quantity"
                     value={quantityCount}
-                    onChange={(e: any) => setQuantityCount(Number(e.target.value))}
+                    onChange={(e: any) =>
+                      setQuantityCount(Number(e.target.value))
+                    }
                     name="quantity"
                     min="1"
                     max="5"

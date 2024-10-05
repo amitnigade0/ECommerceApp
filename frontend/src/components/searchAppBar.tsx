@@ -23,7 +23,7 @@ import { Avatar } from "@mui/material";
 import { LoggedInUserContext } from "../provider/loggedInUserDataProvider";
 import { AnonymousUserDataContext } from "../provider/anonymousUserDataProvider";
 import { useContext } from "react";
-import InventoryTwoToneIcon from '@mui/icons-material/InventoryTwoTone';
+import InventoryTwoToneIcon from "@mui/icons-material/InventoryTwoTone";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -66,16 +66,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar(proops: any) {
-  const { loggedInUserData } = useContext(LoggedInUserContext)
+  const { loggedInUserData } = useContext(LoggedInUserContext);
   const { anonymousUserData } = useContext(AnonymousUserDataContext);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
   let profilePhoto = avatar1;
-  // if (loggedInUserData?.profilePhoto) {
-  //   profilePhoto = loggedInUserData?.profilePhoto;
-  // }
   let cartItemsCount = 0;
   if (loggedInUserData?.cartItems?.length > 0) {
     cartItemsCount = loggedInUserData?.cartItems?.length;

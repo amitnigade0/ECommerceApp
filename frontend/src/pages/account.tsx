@@ -1,23 +1,12 @@
-import * as React from "react";
-import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Card, CardMedia, Typography } from "@mui/material";
 import SearchAppBar from "../components/searchAppBar";
 import { Link } from "react-router-dom";
-import cartImg from "../public/my-cart.avif"
-import orderImg from "../public/orders.jpg"
-import paymentImg from "../public/paymentImg.jpg"
-import profileImg from "../public/profile.jpg"
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import cartImg from "../public/my-cart.avif";
+import orderImg from "../public/orders.jpg";
+import paymentImg from "../public/paymentImg.jpg";
+import profileImg from "../public/profile.jpg";
 
 const Account = () => {
   return (
@@ -45,44 +34,43 @@ const Account = () => {
               </Box>
             </Card>
           </Grid>
-          <Grid item xs={2} sm={4} md={4} key={1}>
-                      <Link to={'/orders'} style={{ textDecoration: "none" }}>
-                      <Card sx={{ display: "flex", p: 4 }}>
-              <CardMedia
-                component="img"
-                sx={{ width: 100 }}
-                image={orderImg}
-                alt="Live from space album cover"
-              />
-              <Box>
-                <Typography variant="h6">My Orders</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Track, return or buy things again
-                </Typography>
-              </Box>
-            </Card>
-                      </Link>
+          <Grid item xs={2} sm={4} md={4} key={2}>
+            <Link to={"/orders"} style={{ textDecoration: "none" }}>
+              <Card sx={{ display: "flex", p: 4 }}>
+                <CardMedia
+                  component="img"
+                  sx={{ width: 100 }}
+                  image={orderImg}
+                  alt="Live from space album cover"
+                />
+                <Box>
+                  <Typography variant="h6">My Orders</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Track, return or buy things again
+                  </Typography>
+                </Box>
+              </Card>
+            </Link>
           </Grid>
-          <Grid item xs={2} sm={4} md={4} key={1}>
-                      <Link to={'/cart'} style={{ textDecoration: "none" }}>
-                      <Card sx={{ display: "flex", p: 4 }}>
-              <CardMedia
-                component="img"
-                sx={{ width: 100 }}
-                image={cartImg}
-                alt="Live from space album cover"
-              />
-              <Box>
-                <Typography variant="h6">My Cart</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Add, update or remove cart items
-                </Typography>
-              </Box>
-            </Card>
-                      </Link>
+          <Grid item xs={2} sm={4} md={4} key={3}>
+            <Link to={"/cart"} style={{ textDecoration: "none" }}>
+              <Card sx={{ display: "flex", p: 4 }}>
+                <CardMedia
+                  component="img"
+                  sx={{ width: 100 }}
+                  image={cartImg}
+                  alt="Live from space album cover"
+                />
+                <Box>
+                  <Typography variant="h6">My Cart</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    Add, update or remove cart items
+                  </Typography>
+                </Box>
+              </Card>
+            </Link>
           </Grid>
-
-          <Grid item xs={2} sm={4} md={4} key={1}>
+          <Grid item xs={2} sm={4} md={4} key={4}>
             <Card sx={{ display: "flex", p: 4 }}>
               <CardMedia
                 component="img"

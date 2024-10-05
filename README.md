@@ -1,7 +1,7 @@
 # ECommerceApp
-Complete eCommerce website using NodeJS, React &amp; MongoDB
+Complete eCommerce website using NodeJS, React and MongoDB
 
------------------------------------------
+------------------------------------------------------------------------------
 
 Tach Stack
 
@@ -17,22 +17,25 @@ Test cases - Mocha-Chai, jest
 
 --------------------------------------------------------------------------------
  
-Structure
-https://www.youtube.com/watch?v=sBl0ZsJE9DY&list=PL63c_Ws9ecISwPzddQzQ671S_gzJA6M5z&index=1
-
-https://www.youtube.com/watch?v=zWEvbGdUhRg
+App design Structure idea
+- https://www.youtube.com/watch?v=sBl0ZsJE9DY&list=PL63c_Ws9ecISwPzddQzQ671S_gzJA6M5z&index=1
+- https://www.youtube.com/watch?v=zWEvbGdUhRg
 
 Follow
 https://www.youtube.com/watch?v=juPYfVY6jkQ&list=PLzb46hGUzitBp584kLyn6l3i6yC-rXlmN&index=4
 
 mongoDB commands
-https://www.mongodb.com/developer/products/mongodb/cheat-sheet/
+- https://www.mongodb.com/developer/products/mongodb/cheat-sheet/
 
------------------------------------------------
+Reference dummy data
+- https://dummyjson.com/docs/products
 
-Reference - https://dummyjson.com/docs/products
+handling Cookies with JWT & CORS
+- https://dev.to/alexmercedcoder/expressjs-handling-cross-origin-cookies-38l9
 
-Upcaming features ---------------------
+------------------------------------------------------------------------------
+
+Upcaming features 
 
 DONE
 - remove item 
@@ -46,8 +49,9 @@ DONE
 
 PENDING
 
-- token storing mechanism(encode & store)
-- blacklist token on logout
+- Secure token storing mechanism(encode & store) - Cookies with JWT & refresh token
+- blacklist token/ clear cookies on logout & refresh
+ 
 - data caching
 - performance & optimization
 - test cases
@@ -64,7 +68,7 @@ PENDING
 Future scope
 - Admin dashboard for managing products, orders, and users.
 - Socket IO
-- Docker
+- Docker/k8s
 - CI/CD
 
 

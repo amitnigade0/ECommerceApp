@@ -1,6 +1,5 @@
-
-import Cards from '../components/cards';
-import SearchAppBar from '../components/searchAppBar';
+import Cards from "../components/cards";
+import SearchAppBar from "../components/searchAppBar";
 
 const Products = () => {
   return (
@@ -9,6 +8,6 @@ const Products = () => {
       <Cards />
     </>
   );
-}
+};
 
 export default Products;

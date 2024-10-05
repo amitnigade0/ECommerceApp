@@ -8,7 +8,7 @@ const AnonymousUserDataContext = createContext({
 const AnonymousUserDataProvider = ({ children }: any) => {
   const [anonymousUserData, setAnonymousUserData] = useState({
     user: "anonymous",
-    cartItems: []
+    cartItems: [],
   });
 
   return (

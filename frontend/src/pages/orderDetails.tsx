@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import SearchAppBar from "../components/searchAppBar";
 import {
   TableContainer,
@@ -35,8 +35,8 @@ const OrderDetails = () => {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Order Date: {orderData.orderDate}
-              </Typography>
-              <Divider sx={{ marginBottom: 4 }} />
+        </Typography>
+        <Divider sx={{ marginBottom: 4 }} />
         <Typography variant="h6">Products ordered</Typography>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">

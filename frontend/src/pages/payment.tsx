@@ -24,15 +24,15 @@ const Payment = () => {
     address: "Sector 15, Airoli",
     cardNumber: "6588 1233 4545/ CVV 123",
   });
-    
-  const { v4: uuidv4 } = require('uuid');
+
+  const { v4: uuidv4 } = require("uuid");
 
   const generateOrderId = () => {
     return uuidv4();
   };
-  
-    const handleSubmit = async () => {
-      alert('Payment successful!')
+
+  const handleSubmit = async () => {
+    alert("Payment successful!");
     setPaymentSuccessful(true);
     let orderProducts: any = [];
     let loggedInUserOrders: any = [];
