@@ -7,15 +7,24 @@ Tach Stack
 
 DB - MongoDB (users, products)
 Auth - JWT-refresh token & cookies
-Server Deployment - netlify,Heroku, AWS EC2
+Server Deployment - AWS EC2, netlify,Heroku 
+CI CD - Github Actions
+Build&Image - Docker
 Backend - Node Express
 Froend End - React
 UI -  Material UI
-Test cases - Mocha-Chai, jest
-Payment Gateway - Razor pay
-notifications - firebase
+Test cases - Mocha-Chai, jest ( Jest for frontend, Mocha for backend)
+Cache - Redis
+notifications(mail) - node mailer
+language - javaScript, typeScript
+Design pattern - mvc
+
+
 
 --------------------------------------------------------------------------------
+
+Create API using NodeJS Express MongoDb
+- https://www.youtube.com/watch?v=ekRpc5YgVZU - Dipesh malviya
  
 App design Structure idea
 - https://www.youtube.com/watch?v=sBl0ZsJE9DY&list=PL63c_Ws9ecISwPzddQzQ671S_gzJA6M5z&index=1
@@ -67,7 +76,9 @@ PENDING
 ---------------------
 Future scope
 - Admin dashboard for managing products, orders, and users.
-- Socket IO
+- Socket IO 
+- Payment Gateway - Razor pay
+- notifications - firebase
 
 --------------
 
