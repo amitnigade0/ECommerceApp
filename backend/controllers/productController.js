@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Product = require("../models/productModel");
+//const { getFromCache, setToCache, clearCache } = require("../redis/cache")
 
 const getProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
@@ -11,11 +12,24 @@ const getProduct = asyncHandler(async (req, res) => {
 });
 
 const getProducts = asyncHandler(async (req, res) => {
+  //const cacheKey = 'products'; // Define a cache key
+
+  // Check if the data is already in cache
+  // const cachedData = await getFromCache(cacheKey);
+  // if (cachedData) {
+  //   console.log('Returning cached data from Redis');
+  //   return res.json(cachedData).status(200); // Return cached data
+  // }
+
   const products = await Product.find();
   if (!products) {
     res.status(404);
     throw new Error("Products not found");
   }
+
+  // Store the fetched data in cache
+  //await setToCache(cacheKey, products);
+
   res.json(products).status(200);
 });
 

@@ -35,7 +35,6 @@ export default function SessionExpireModal() {
       }
     } catch (err) {
       console.log(`Error while calling refresh token API, ${err}`);
-      alert("Session expired! please re-login.");
       naviagate("/logout");
     }
   };

@@ -55,7 +55,7 @@ const loginUser = asyncHandler(async (req, res) => {
       domain: "localhost",
       secure: false, // true in production
       sameSite: "lax", // or 'strict'
-      maxAge: 5 * 60 * 1000, // 5 minutes
+      maxAge: 3 * 60 * 1000, // 3 minutes
     });
     
     res.cookie("refreshToken", refreshToken, {
@@ -67,7 +67,7 @@ const loginUser = asyncHandler(async (req, res) => {
       maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
     });
 
-    const tokenExpiresIn = Date.now() + (2 * 60 * 1000)
+    const tokenExpiresIn = Date.now() + (3 * 60 * 1000)
 
     res.json({ message: "Login successful!", tokenExpiresIn }).status(200);
   } else {
@@ -94,9 +94,9 @@ const refreshToken = asyncHandler(async (req, res) => {
         domain: "localhost",
         secure: false, // true in production
         sameSite: "lax", // or 'strict'
-        maxAge: 5 * 60 * 1000, // 5 minutes
+        maxAge: 3 * 60 * 1000, // 3 minutes
     });
-    const tokenExpiresIn = Date.now() + (2 * 60 * 1000)
+    const tokenExpiresIn = Date.now() + (3 * 60 * 1000)
     res.json({ message: "Token refreshed", tokenExpiresIn }).status(200);
   });
 });

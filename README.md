@@ -5,15 +5,15 @@ Complete eCommerce website using NodeJS, React and MongoDB
 
 Tach Stack
 
-DB - MongoDB (users, producs, history)
-Auth - JWT
-Payment Gateway - Razor pay
+DB - MongoDB (users, products)
+Auth - JWT-refresh token & cookies
 Server Deployment - netlify,Heroku, AWS EC2
-notifications - firebase
-Backend - Node Express/NEXT JS
+Backend - Node Express
 Froend End - React
 UI -  Material UI
 Test cases - Mocha-Chai, jest
+Payment Gateway - Razor pay
+notifications - firebase
 
 --------------------------------------------------------------------------------
  
@@ -45,17 +45,17 @@ DONE
 - account
 - forgot/reset password functionality
 - Gmail integration
+- Redis cahe (performance & optimization) - config issue
+- Secure token storing mechanism(encode & store) - Cookies with JWT & refresh token
+- blacklist token/ clear cookies on logout & refresh
 
 
 PENDING
 
-- Secure token storing mechanism(encode & store) - Cookies with JWT & refresh token
-- blacklist token/ clear cookies on logout & refresh
- 
-- data caching
-- performance & optimization
-- test cases
 - server deployment
+- Docker/k8s
+- CI/CD
+- test cases
 
 - search function
 - add reviews
@@ -68,7 +68,10 @@ PENDING
 Future scope
 - Admin dashboard for managing products, orders, and users.
 - Socket IO
-- Docker/k8s
-- CI/CD
+
+--------------
+
+-every time you push to your main branch, the GitHub Actions workflow will build the Docker image,
+push it to Docker Hub, and deploy it to your AWS server.
 
 
