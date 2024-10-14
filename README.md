@@ -86,3 +86,20 @@ Future scope
 push it to Docker Hub, and deploy it to your AWS server.
 
 
+----------------------------------------------------------------------------
+
+DockerHub creds
+
+username - amitnigade0
+email - amitnigade0@gmail.com
+password - Amitdev@3333
+
+
+--------------------------------
+
+Mongo DB
+
+Link - https://account.mongodb.com/account/login
+Login through Google - amitnigade0@gmail.com
+
+

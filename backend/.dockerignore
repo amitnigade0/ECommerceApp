@@ -1,0 +1,8 @@
+# Ignore environment files
+.env
+
+# Ignore other files and directories
+node_modules
+
+# Ignore test files
+tests/

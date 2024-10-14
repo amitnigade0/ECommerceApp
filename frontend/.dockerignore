@@ -1,0 +1,12 @@
+# Ignore environment files
+.env
+
+# Ignore version control
+.git
+.gitignore
+
+# Ignore dependencies and build artifacts
+node_modules
+
+# Ignore test files
+tests/

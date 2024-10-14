@@ -1,0 +1,84 @@
+{
+    "_id": {
+      "$oid": "66a7a3b78f0b4127990a0bfb"
+    },
+    "username": "amit",
+    "email": "amitnigade0@gmail.com",
+    "password": "$2b$10$HCAyL/gZPy0oeaqqv1iatuOS3f85UGOM4MHWQOkGXLbAfAaR/BY5K",
+    "cartItems": [
+      {
+        "productId": "66a2664a6cf749f55358ad92",
+        "image": "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png",
+        "title": "Powder Canister",
+        "offeredPrice": 12,
+        "quantity": 1,
+        "date": "8/24/2024, 6:08:28 PM"
+      }
+    ],
+    "orders": [
+      {
+        "orderId": "a48f8daa-83d3-4d67-9004-82871d589d94",
+        "orderDate": "8/24/2024, 4:41:16 PM",
+        "amount": 56,
+        "paymentStatus": "completed",
+        "deliveryStatus": "pending",
+        "orderProducts": [
+          {
+            "productId": "66a266146cf749f55358ad8f",
+            "image": "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
+            "title": "Eyeshadow Palette with Mirror",
+            "offeredPrice": 19,
+            "quantity": 2
+          },
+          {
+            "productId": "66a264c7db23c876182f9c7b",
+            "image": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
+            "title": "Essence Mascara Lash Princess",
+            "offeredPrice": 9,
+            "quantity": 2
+          }
+        ]
+      },
+      {
+        "orderId": "a4e9fe18-5d17-4a2a-a472-221d254e71f3",
+        "orderDate": "8/24/2024, 4:41:42 PM",
+        "amount": 12,
+        "paymentStatus": "completed",
+        "deliveryStatus": "pending",
+        "orderProducts": [
+          {
+            "productId": "66a2664a6cf749f55358ad92",
+            "image": "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png",
+            "title": "Powder Canister",
+            "offeredPrice": 12,
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "orderId": "ede78c91-8b79-4453-ad2d-1081a33c6717",
+        "orderDate": "8/24/2024, 6:00:42 PM",
+        "amount": 50,
+        "paymentStatus": "completed",
+        "deliveryStatus": "pending",
+        "orderProducts": [
+          {
+            "productId": "66a266986cf749f55358ad9b",
+            "image": "https://cdn.dummyjson.com/products/images/fragrances/Calvin%20Klein%20CK%20One/thumbnail.png",
+            "title": "Calvin Klein CK One",
+            "offeredPrice": 50,
+            "quantity": 1
+          }
+        ]
+      }
+    ],
+    "createdAt": {
+      "$date": "2024-07-29T14:14:15.136Z"
+    },
+    "updatedAt": {
+      "$date": "2024-09-26T15:12:34.568Z"
+    },
+    "__v": 0,
+    "resetPasswordExpires": null,
+    "resetPasswordToken": ""
+  }
