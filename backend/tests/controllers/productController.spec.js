@@ -7,6 +7,6 @@ const { expect } = chai;
 
 describe('Product Controller', ()=> {
     it('Should return all products', () => {
-        
+        // test cases
     })
 })
