@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // 1. React Frontend Debugging (Chrome)
+    {
+      "name": "Launch Chrome against localhost",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000", // Adjust if your React app runs on a different port
+      "webRoot": "${workspaceFolder}/frontend/src"
+    },
+
+    // 2. Backend Node.js Debugging
+    {
+      "name": "Launch Node.js (Backend)",
+      "type": "node",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/backend/server.js", // Your backend entry point
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/backend/.env"  // Point to your .env file in the backend folder
+    },
+
+    // 3. Debug Jest Tests (Frontend)
+    {
+      "name": "Debug Jest Tests (Frontend)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "test",
+        "--runInBand", // Ensure tests run sequentially
+        "--coverage=true" // Optional: Skip coverage reporting if not needed
+      ],
+      "env": {
+        "CI": "true"
+      },
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/frontend" // Set the working directory to the frontend folder
+    }
+  ]
+}

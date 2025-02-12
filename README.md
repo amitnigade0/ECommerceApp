@@ -13,9 +13,9 @@ Build&Image - Docker
 Backend - Node Express
 Froend End - React
 UI -  Material UI
-Test cases - Mocha-Chai, jest ( Jest for frontend, Mocha for backend)
+Test cases - Mocha-Chai, jest (Mocha for backend, Jest for frontend)
 Cache - Redis
-notifications(mail) - node mailer
+notifications(mail) - node mailer(Forgot password)
 language - javaScript, typeScript
 Design pattern - mvc
 
@@ -103,3 +103,17 @@ Link - https://account.mongodb.com/account/login
 Login through Google - amitnigade0@gmail.com
 
 
+---------------------------------------------------------
+
+Mocha - used to run tests, testing framework
+
+Sinon - used for mocking, stubbing, and spying, providing fine-grained control over the code execution during tests.
+
+Chai - assertion library for Node.js and browsers, often used alongside Mocha. It provides a range of useful assertions for making your tests more readable and expressive.
+
+Jest - complete testing framework that provides an integrated test runner, assertion library, mocking, and more. It is designed to work out of the box, especially for testing JavaScript and React applications.
+
+![when to use which](ECommerceApp\frontend\public\mocha-chai-jest.png)
+
+
+-------------------------------------------------
